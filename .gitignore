@@ -1,1 +1,2 @@
-.ipynb_checkpoints
+# Ignore ipython checkpoint
+.ipynb_checkpoints/
