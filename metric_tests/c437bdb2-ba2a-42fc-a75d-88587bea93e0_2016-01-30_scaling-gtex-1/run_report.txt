@@ -1,0 +1,10 @@
+UUID: c437bdb2-ba2a-42fc-a75d-88587bea93e0
+Number of Samples: 3
+Number of Nodes: 1
+Cluster Name: scaling-gtex-1
+Source Bucket: gtex-data
+Average Hourly Cost: $0.378
+Cost per Instance: $2.67
+Availability Zone: us-west-2a
+Total Cost of Cluster: $2.67
+Cost Per Sample: $0.89

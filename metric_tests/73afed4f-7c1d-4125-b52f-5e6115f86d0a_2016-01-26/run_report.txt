@@ -1,0 +1,8 @@
+
+Instance Type: c3.8xlarge
+Avail Zone: us-west-2b
+Total Cost: 8.31943462329
+Average Hourly Cost: 0.496452139037
+UUID of Run: 73afed4f-7c1d-4125-b52f-5e6115f86d0a
+Num Samples: 836
+ Num Nodes: 250

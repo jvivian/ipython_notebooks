@@ -1,0 +1,10 @@
+UUID: 06aaac8b-66ef-4679-822c-6afb879be08a
+Number of Samples: 23
+Number of Nodes: 10
+Cluster Name: scaling-tcga-10
+Source Bucket: tcga-data-cgl-recompute
+Average Hourly Cost: $0.45361010101
+Cost per Instance: $3.60355424411
+Availability Zone: us-west-2a
+Total Cost of Cluster: $36
+Cost Per Sample: $1.50
