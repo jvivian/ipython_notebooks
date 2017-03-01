@@ -1,0 +1,9 @@
+{
+	"n_targets": 197044,
+	"n_bootstraps": 100,
+	"n_processed": 45825346,
+	"kallisto_version": "0.42.4",
+	"index_version": 10,
+	"start_time": "Thu Feb 23 18:51:51 2017",
+	"call": "kallisto quant -i /data/kallisto_hg38.idx -t 8 -o /data/ -b 100 /data/R1_cutadapt.fastq /data/R2_cutadapt.fastq"
+}
