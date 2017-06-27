@@ -1,0 +1,960 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass{article}
+
+    
+    
+    \usepackage{graphicx} % Used to insert images
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{color} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage{ulem} % ulem is needed to support strikethroughs (\sout)
+    
+
+    
+    
+    \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
+    \definecolor{darkorange}{rgb}{.71,0.21,0.01}
+    \definecolor{darkgreen}{rgb}{.12,.54,.11}
+    \definecolor{myteal}{rgb}{.26, .44, .56}
+    \definecolor{gray}{gray}{0.45}
+    \definecolor{lightgray}{gray}{.95}
+    \definecolor{mediumgray}{gray}{.8}
+    \definecolor{inputbackground}{rgb}{.95, .95, .85}
+    \definecolor{outputbackground}{rgb}{.95, .95, .95}
+    \definecolor{traceback}{rgb}{1, .95, .95}
+    % ansi colors
+    \definecolor{red}{rgb}{.6,0,0}
+    \definecolor{green}{rgb}{0,.65,0}
+    \definecolor{brown}{rgb}{0.6,0.6,0}
+    \definecolor{blue}{rgb}{0,.145,.698}
+    \definecolor{purple}{rgb}{.698,.145,.698}
+    \definecolor{cyan}{rgb}{0,.698,.698}
+    \definecolor{lightgray}{gray}{0.5}
+    
+    % bright ansi colors
+    \definecolor{darkgray}{gray}{0.25}
+    \definecolor{lightred}{rgb}{1.0,0.39,0.28}
+    \definecolor{lightgreen}{rgb}{0.48,0.99,0.0}
+    \definecolor{lightblue}{rgb}{0.53,0.81,0.92}
+    \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
+    \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+    
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Metadata Collation for TCGA and GTEx}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=blue,
+      linkcolor=darkorange,
+      citecolor=darkgreen,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Metadata Collation for TCGA and
+GTEx}\label{metadata-collation-for-tcga-and-gtex}
+
+Goal: Create a combined metadata table that spans both TCGA and GTEx.
+
+TSVs were obtained from \href{http://snaptron.cs.jhu.edu/data}{here},
+and publically rehosted on Synapse.
+
+\begin{itemize}
+\tightlist
+\item
+  TCGA: syn7248855
+\item
+  GTEx: syn10142937
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+        \PY{k+kn}{import} \PY{n+nn}{os}
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k+kn}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{from} \PY{n+nn}{pandas.tools.plotting} \PY{k+kn}{import} \PY{n}{scatter\PYZus{}matrix}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k+kn}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k+kn}{as} \PY{n+nn}{sns}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}
+        \PY{k+kn}{import} \PY{n+nn}{pickle}
+        
+        \PY{n}{sns}\PY{o}{.}\PY{n}{set\PYZus{}style}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{whitegrid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \subsection{Read Inputs}\label{read-inputs}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{tcga} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{input\PYZus{}data/tcga\PYZhy{}sample\PYZhy{}metadata.tsv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{low\PYZus{}memory}\PY{o}{=}\PY{n+nb+bp}{False}\PY{p}{)}
+        \PY{n}{gtex} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{input\PYZus{}data/gtex\PYZhy{}sample\PYZhy{}metadata.tsv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    How many metadata columns are there?
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{k}{print} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TCGA: \PYZob{}\PYZcb{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{ GTEx: \PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{tcga}\PY{o}{.}\PY{n}{columns}\PY{p}{)}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{gtex}\PY{o}{.}\PY{n}{columns}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+TCGA: 858	 GTEx: 301
+    \end{Verbatim}
+
+    \ldots{}that's quite a few. Because most columns are likely
+uninformative, filter the samples by RNA-Seq and examine the remaining
+columns.
+
+    \subsection{TCGA}\label{tcga}
+
+Locate what column the sample barcodes are in
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{tcga}\PY{p}{[}\PY{n}{tcga}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{r}\PY{p}{:} \PY{n}{r}\PY{o}{.}\PY{n}{str}\PY{o}{.}\PY{n}{contains}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TCGA\PYZhy{}DQ\PYZhy{}5630}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{case}\PY{o}{=}\PY{n+nb+bp}{False}\PY{p}{)}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}\PY{o}{.}\PY{n}{index}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}10}]:} Int64Index([2470], dtype='int64')
+\end{Verbatim}
+        
+    Locate column(s) to filter by
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k}{print} \PY{p}{[}\PY{n+nb}{str}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{tcga}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{2470}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{index}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RNA\PYZhy{}Seq}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+33
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{tcga}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{l+m+mi}{126}\PY{p}{]}  \PY{c+c1}{\PYZsh{} \PYZdq{}Barcode\PYZdq{} in original metadata}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} 'gdc\_cases.samples.portions.analytes.aliquots.submitter\_id'
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{tcga}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{l+m+mi}{33}\PY{p}{]}  \PY{c+c1}{\PYZsh{} We want to filter samples by this column using the term: \PYZsq{}RNA\PYZhy{}Seq\PYZsq{}}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}8}]:} 'gdc\_experimental\_strategy'
+\end{Verbatim}
+        
+    Subset by experimental strategy
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{tcga} \PY{o}{=} \PY{n}{tcga}\PY{p}{[}\PY{n}{tcga}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gdc\PYZus{}experimental\PYZus{}strategy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RNA\PYZhy{}Seq}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{k}{print} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Samples: \PYZob{}\PYZcb{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{Features: \PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{o}{*}\PY{n}{tcga}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Samples: 11284	Features: 858
+    \end{Verbatim}
+
+    Sift through 858 columns using the famous GSD (Graduate Student Descent)
+algorithm
+
+    \subsubsection{List of columns to keep for TCGA
+metadata}\label{list-of-columns-to-keep-for-tcga-metadata}
+
+Sample Information
+
+\begin{itemize}
+\tightlist
+\item
+  gdc\_cases.samples.submitter\_id\\
+\item
+  reads\_downloaded
+\item
+  paired\_end
+\item
+  mapped\_read\_count
+\item
+  auc
+\item
+  gdc\_platform
+\item
+  gdc\_file\_size
+\item
+  gdc\_experimental\_strategy
+\item
+  gdc\_center.code
+\item
+  gdc\_center.name\\
+\item
+  gdc\_center.short\_name
+\item
+  gdc\_data\_category
+\item
+  gdc\_cases.tissue\_source\_site.name
+\item
+  gdc\_cases.samples.portions.analytes.aliquots.concentration
+\item
+  gdc\_cases.samples.portions.analytes.a260\_a280\_ratio
+\item
+  cgc\_sample\_country\_of\_sample\_procurement
+\end{itemize}
+
+Patient Information
+
+\begin{itemize}
+\tightlist
+\item
+  gdc\_cases.demographic.gender
+\item
+  gdc\_cases.demographic.year\_of\_birth
+\item
+  gdc\_cases.demographic.race
+\item
+  gdc\_cases.demographic.ethnicity
+\item
+  gdc\_cases.samples.initial\_weight
+\item
+  gdc\_cases.diagnoses.days\_to\_death
+\item
+  gdc\_cases.diagnoses.age\_at\_diagnosis
+\item
+  gdc\_cases.exposures.cigarettes\_per\_day\\
+\item
+  gdc\_cases.exposures.alcohol\_history
+\item
+  gdc\_cases.exposures.weight
+\item
+  gdc\_cases.exposures.years\_smoked
+\item
+  gdc\_cases.exposures.height
+\item
+  cgc\_case\_year\_of\_diagnosis
+\end{itemize}
+
+Tumor Information
+
+\begin{itemize}
+\tightlist
+\item
+  gdc\_cases.project.name
+\item
+  gdc\_cases.project.primary\_site
+\item
+  gdc\_cases.diagnoses.tumor\_stage
+\item
+  gdc\_cases.diagnoses.vital\_status
+\item
+  gdc\_cases.samples.sample\_type
+\item
+  cgc\_case\_new\_tumor\_event\_after\_initial\_treatment
+\item
+  cgc\_case\_pathologic\_stage
+\end{itemize}
+
+    Select, subset, and rename dataframe
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{tcga} \PY{o}{=} \PY{n}{tcga}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gdc\PYZus{}cases.samples.submitter\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{reads\PYZus{}downloaded}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{paired\PYZus{}end}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mapped\PYZus{}read\PYZus{}count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{auc}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gdc\PYZus{}platform}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gdc\PYZus{}file\PYZus{}size}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gdc\PYZus{}experimental\PYZus{}strategy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gdc\PYZus{}center.short\PYZus{}name}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gdc\PYZus{}data\PYZus{}category}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gdc\PYZus{}cases.tissue\PYZus{}source\PYZus{}site.name}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gdc\PYZus{}cases.samples.portions.analytes.aliquots.concentration}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gdc\PYZus{}cases.samples.portions.analytes.a260\PYZus{}a280\PYZus{}ratio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cgc\PYZus{}sample\PYZus{}country\PYZus{}of\PYZus{}sample\PYZus{}procurement}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gdc\PYZus{}cases.demographic.gender}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gdc\PYZus{}cases.demographic.year\PYZus{}of\PYZus{}birth}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gdc\PYZus{}cases.demographic.race}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gdc\PYZus{}cases.demographic.ethnicity}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gdc\PYZus{}cases.samples.initial\PYZus{}weight}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gdc\PYZus{}cases.diagnoses.days\PYZus{}to\PYZus{}death}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gdc\PYZus{}cases.diagnoses.age\PYZus{}at\PYZus{}diagnosis}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gdc\PYZus{}cases.exposures.cigarettes\PYZus{}per\PYZus{}day}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gdc\PYZus{}cases.exposures.alcohol\PYZus{}history}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gdc\PYZus{}cases.exposures.weight}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gdc\PYZus{}cases.exposures.years\PYZus{}smoked}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gdc\PYZus{}cases.exposures.height}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cgc\PYZus{}case\PYZus{}year\PYZus{}of\PYZus{}diagnosis}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gdc\PYZus{}cases.project.name}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gdc\PYZus{}cases.project.primary\PYZus{}site}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gdc\PYZus{}cases.diagnoses.tumor\PYZus{}stage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gdc\PYZus{}cases.diagnoses.vital\PYZus{}status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gdc\PYZus{}cases.samples.sample\PYZus{}type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cgc\PYZus{}case\PYZus{}new\PYZus{}tumor\PYZus{}event\PYZus{}after\PYZus{}initial\PYZus{}treatment}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cgc\PYZus{}case\PYZus{}pathologic\PYZus{}stage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+         \PY{n}{tcga}\PY{o}{.}\PY{n}{index} \PY{o}{=} \PY{n}{tcga}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gdc\PYZus{}cases.samples.submitter\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{tcga}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{submitter\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{reads\PYZus{}downloaded}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{paired\PYZus{}end}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mapped\PYZus{}read\PYZus{}count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{auc}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{platform}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{file\PYZus{}size}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{experimental\PYZus{}strategy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center\PYZus{}short}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{data\PYZus{}category}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tissue\PYZus{}source\PYZus{}site}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{aliquots\PYZus{}concentration}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a260\PYZus{}a280\PYZus{}ratio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country\PYZus{}of\PYZus{}sample\PYZus{}procurement}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gender}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{year\PYZus{}of\PYZus{}birth}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{race}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ethnicity}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{initial\PYZus{}weight}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{days\PYZus{}to\PYZus{}death}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{age\PYZus{}at\PYZus{}diagnosis}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cigarettes\PYZus{}per\PYZus{}day}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{alcohol\PYZus{}history}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{weight}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{years\PYZus{}smoked}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{height}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{year\PYZus{}of\PYZus{}diagnosis}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{project\PYZus{}name}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{primary\PYZus{}site}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tumor\PYZus{}stage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vital\PYZus{}status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sample\PYZus{}type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{new\PYZus{}tumor\PYZus{}event\PYZus{}after\PYZus{}initial\PYZus{}treatment}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pathologic\PYZus{}stage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{tcga}\PY{o}{.}\PY{n}{index} \PY{o}{=} \PY{n}{tcga}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{submitter\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{tcga}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{name} \PY{o}{=} \PY{n+nb+bp}{None}
+\end{Verbatim}
+
+    Drop duplicate rows based on index
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{tcga} \PY{o}{=} \PY{n}{tcga}\PY{p}{[}\PY{o}{\PYZti{}}\PY{n}{tcga}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{duplicated}\PY{p}{(}\PY{n}{keep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{first}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{k}{print} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Samples: \PYZob{}\PYZcb{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{Features: \PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{o}{*}\PY{n}{tcga}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Samples: 11190	Features: 34
+    \end{Verbatim}
+
+    \paragraph{Data Cleanup}\label{data-cleanup}
+
+Look for features with values that need NAN replacements, sparse /
+uninformative, etc
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{k}{for} \PY{n}{c} \PY{o+ow}{in} \PY{n}{tcga}\PY{o}{.}\PY{n}{columns}\PY{p}{:}
+             \PY{k}{print} \PY{n}{c}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{tcga}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+             \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{tcga}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:}
+                 \PY{k}{print} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{dropping: }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n}{c} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{tcga}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+                 \PY{n}{tcga}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+submitter\_id 11190
+reads\_downloaded 11189
+paired\_end 1
+	dropping: paired\_end	True
+mapped\_read\_count 11190
+auc 11190
+platform 2
+file\_size 11190
+experimental\_strategy 1
+	dropping: experimental\_strategy	RNA-Seq
+center\_short 3
+data\_category 1
+	dropping: data\_category	Raw sequencing data
+tissue\_source\_site 217
+aliquots\_concentration 19
+a260\_a280\_ratio 108
+country\_of\_sample\_procurement 33
+gender 3
+year\_of\_birth 91
+race 7
+ethnicity 4
+initial\_weight 221
+days\_to\_death 1579
+age\_at\_diagnosis 7797
+cigarettes\_per\_day 186
+alcohol\_history 3
+weight 379
+years\_smoked 64
+height 135
+year\_of\_diagnosis 34
+project\_name 33
+primary\_site 26
+tumor\_stage 21
+vital\_status 4
+sample\_type 7
+new\_tumor\_event\_after\_initial\_treatment 3
+pathologic\_stage 21
+    \end{Verbatim}
+
+    convert string nones to nans
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{tcga}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{not reported}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{nan}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+         \PY{n}{tcga}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{None}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{nan}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{tcga}\PY{o}{.}\PY{n}{to\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tcga\PYZhy{}metadata\PYZhy{}cleaned.tsv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \subsection{Combined Columns}\label{combined-columns}
+
+Metadata that spans both datasets
+
+\begin{itemize}
+\tightlist
+\item
+  ID
+
+  \begin{itemize}
+  \tightlist
+  \item
+    submitter\_id
+  \item
+    SAMPID
+  \end{itemize}
+\item
+  Reads
+
+  \begin{itemize}
+  \tightlist
+  \item
+    reads\_downloaded
+  \item
+    spots (??)
+  \end{itemize}
+\item
+  size
+
+  \begin{itemize}
+  \tightlist
+  \item
+    file\_size (bytes?, divide by a million)
+  \item
+    size\_MB
+  \end{itemize}
+\item
+  platform
+
+  \begin{itemize}
+  \tightlist
+  \item
+    platform
+  \item
+    Model
+  \end{itemize}
+\item
+  sex
+
+  \begin{itemize}
+  \tightlist
+  \item
+    gender
+  \item
+    Sex
+  \end{itemize}
+\item
+  tissue
+
+  \begin{itemize}
+  \tightlist
+  \item
+    primary\_site
+  \item
+    Body\_Site
+  \end{itemize}
+\item
+  Sequencing
+
+  \begin{itemize}
+  \tightlist
+  \item
+    center\_short
+  \item
+    CenterName
+  \end{itemize}
+\item
+  weight
+
+  \begin{itemize}
+  \tightlist
+  \item
+    weight
+  \item
+    WGHT
+  \end{itemize}
+\item
+  height
+
+  \begin{itemize}
+  \tightlist
+  \item
+    height
+  \item
+    HGHT
+  \end{itemize}
+\item
+  mapped
+
+  \begin{itemize}
+  \tightlist
+  \item
+    mapped\_read\_count
+  \item
+    SMMPPD
+  \end{itemize}
+\item
+  race
+
+  \begin{itemize}
+  \tightlist
+  \item
+    race
+  \item
+    RACE (3=white, 2=african american, 1=asian, 98,98,4=other)
+  \end{itemize}
+\item
+  age
+
+  \begin{itemize}
+  \tightlist
+  \item
+    year\_of\_birth (2010 - year\_of\_birth = age)
+  \item
+    AGE
+  \end{itemize}
+\item
+  ethnicity
+
+  \begin{itemize}
+  \tightlist
+  \item
+    ethnicity
+  \item
+    ETHNICITY (don't know code)
+  \end{itemize}
+\item
+  qc (Need transformation factor)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    a260\_a280\_ratio
+  \item
+    SMRIN
+  \end{itemize}
+\end{itemize}
+
+    Fix A260 / a280 ratios. Two samples have a260's greater than 10 (180 and
+187.5 respectively). We'll set these to NaN since we don't actually know
+their score should be.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{tcga}\PY{p}{[}\PY{n}{tcga}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a260\PYZus{}a280\PYZus{}ratio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{l+m+mi}{10}\PY{p}{]}\PY{o}{.}\PY{n}{index}\PY{p}{:}
+             \PY{n}{tcga}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a260\PYZus{}a280\PYZus{}ratio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{nan}
+\end{Verbatim}
+
+    Create combined dataframe
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{n}{colnames} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{reads}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{size\PYZus{}MB}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{platform}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sex}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tissue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{seq\PYZus{}site}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{weight}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                     \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{height}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mapped\PYZus{}reads}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{race}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{age}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{qc}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         
+         \PY{n}{tcga\PYZus{}sub} \PY{o}{=} \PY{n}{tcga}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{submitter\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{reads\PYZus{}downloaded}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{file\PYZus{}size}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{platform}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gender}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                          \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{primary\PYZus{}site}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center\PYZus{}short}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{weight}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{height}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mapped\PYZus{}read\PYZus{}count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                          \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{race}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{year\PYZus{}of\PYZus{}birth}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a260\PYZus{}a280\PYZus{}ratio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+         \PY{n}{tcga\PYZus{}sub}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{n}{colnames}
+         
+         \PY{n}{gtex\PYZus{}sub} \PY{o}{=} \PY{n}{gtex}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SAMPID}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{spots}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{size\PYZus{}MB}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Model}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sex}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Body\PYZus{}Site}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CenterName}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                          \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{WGHT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{HGHT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SMMPPD}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RACE}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{AGE}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SMRIN}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+         \PY{n}{gtex\PYZus{}sub}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{n}{colnames}
+         
+         \PY{c+c1}{\PYZsh{} TCGA A280 conversion to RIN space}
+         \PY{c+c1}{\PYZsh{} Model as a piecewise linear transformation. }
+         \PY{c+c1}{\PYZsh{} For values \PYZlt{}=2.0    y = 20x \PYZhy{} 30}
+         \PY{c+c1}{\PYZsh{} For values \PYZgt{}2.0     y = \PYZhy{}20x + 50}
+         \PY{n}{vals} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{v} \PY{o+ow}{in} \PY{n}{tcga\PYZus{}sub}\PY{o}{.}\PY{n}{qc}\PY{p}{:}
+             \PY{k}{if} \PY{n}{v} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mf}{2.0}\PY{p}{:}
+                 \PY{n}{vals}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+m+mi}{20}\PY{o}{*}\PY{n}{v} \PY{o}{\PYZhy{}} \PY{l+m+mi}{30}\PY{p}{)}
+             \PY{k}{else}\PY{p}{:}
+                 \PY{n}{vals}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{20}\PY{o}{*}\PY{n}{v} \PY{o}{+} \PY{l+m+mi}{50}\PY{p}{)}
+         \PY{n}{tcga\PYZus{}sub}\PY{o}{.}\PY{n}{qc} \PY{o}{=} \PY{p}{[}\PY{n}{x} \PY{k}{if} \PY{n}{x} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0} \PY{k}{else} \PY{l+m+mi}{0} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{vals}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} Convert TCGA height from cm to in}
+         \PY{n}{tcga\PYZus{}sub}\PY{o}{.}\PY{n}{height} \PY{o}{=} \PY{n}{tcga\PYZus{}sub}\PY{o}{.}\PY{n}{height}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x}\PY{o}{*}\PY{l+m+mf}{1.0} \PY{o}{/} \PY{l+m+mf}{2.54}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} Fix outliers}
+         \PY{n}{tcga\PYZus{}sub}\PY{o}{.}\PY{n}{height} \PY{o}{=} \PY{p}{[}\PY{n}{x} \PY{k}{if} \PY{n}{x} \PY{o}{\PYZgt{}} \PY{l+m+mi}{40} \PY{k}{else} \PY{n}{np}\PY{o}{.}\PY{n}{nan} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{tcga\PYZus{}sub}\PY{o}{.}\PY{n}{height}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} Convert size to MB for TCGA}
+         \PY{n}{tcga\PYZus{}sub}\PY{o}{.}\PY{n}{size\PYZus{}MB} \PY{o}{=} \PY{n}{tcga\PYZus{}sub}\PY{o}{.}\PY{n}{size\PYZus{}MB}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{p}{(}\PY{n}{x}\PY{o}{*}\PY{l+m+mf}{1.0}\PY{p}{)} \PY{o}{/} \PY{l+m+mi}{1024} \PY{o}{/} \PY{l+m+mi}{1024}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Convert year of birth to age}
+         \PY{n}{tcga\PYZus{}sub}\PY{o}{.}\PY{n}{age} \PY{o}{=} \PY{n}{tcga\PYZus{}sub}\PY{o}{.}\PY{n}{age}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{l+m+mi}{2010} \PY{o}{\PYZhy{}} \PY{n}{x}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Truncate last letter of TCGA ID}
+         \PY{n}{tcga\PYZus{}sub}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{tcga\PYZus{}sub}\PY{o}{.}\PY{n}{id}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Create combined manifest}
+         \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{p}{[}\PY{n}{tcga\PYZus{}sub}\PY{p}{,} \PY{n}{gtex\PYZus{}sub}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Add dataset column}
+         \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dataset}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tcga}\PY{l+s+s1}{\PYZsq{}} \PY{k}{if} \PY{n}{x}\PY{o}{.}\PY{n}{startswith}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TCGA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{else} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gtex}\PY{l+s+s1}{\PYZsq{}} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} Add Tumor column}
+         \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tumor}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{no}\PY{l+s+s1}{\PYZsq{}} \PY{k}{if} \PY{n}{x}\PY{o}{.}\PY{n}{endswith}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}11}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{o+ow}{or} \PY{n}{x}\PY{o}{.}\PY{n}{startswith}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{GTEX}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+                        \PY{k}{else} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yes}\PY{l+s+s1}{\PYZsq{}} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} Clean values for certain columns}
+         \PY{n}{df}\PY{o}{.}\PY{n}{platform}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Illumina HiSeq 2000}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Illumina HiSeq}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Generalize tissue labels}
+         \PY{n}{df}\PY{o}{.}\PY{n}{tissue} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{tissue}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         \PY{n}{df}\PY{o}{.}\PY{n}{tissue}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Small}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Small\PYZus{}intestine}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+         \PY{n}{df}\PY{o}{.}\PY{n}{tissue}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Soft}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Soft\PYZus{}tissue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+         \PY{n}{df}\PY{o}{.}\PY{n}{tissue}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Bone}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Bone\PYZus{}marrow}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+         \PY{n}{df}\PY{o}{.}\PY{n}{tissue}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Colorectal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Colon}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Replace numbers with string words}
+         \PY{n}{df}\PY{o}{.}\PY{n}{race}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{white}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+         \PY{n}{df}\PY{o}{.}\PY{n}{race}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{black or african american}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+         \PY{n}{df}\PY{o}{.}\PY{n}{race}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{asian}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+         \PY{n}{df}\PY{o}{.}\PY{n}{race}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+m+mi}{98}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{other}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+         \PY{n}{df}\PY{o}{.}\PY{n}{race}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+m+mi}{99}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{other}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+         \PY{n}{df}\PY{o}{.}\PY{n}{race}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{other}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Set index to ID column}
+         \PY{n}{df}\PY{o}{.}\PY{n}{index} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{df}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{name} \PY{o}{=} \PY{n+nb+bp}{None}
+         
+         \PY{c+c1}{\PYZsh{} Create \PYZdq{}Type\PYZdq{} label. Disease for tcga and long form label for GTEx}
+         \PY{n}{types} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{sample} \PY{o+ow}{in} \PY{n}{df}\PY{o}{.}\PY{n}{index}\PY{p}{:}
+             \PY{k}{if} \PY{n}{sample}\PY{o}{.}\PY{n}{startswith}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TCGA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{types}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}
+                         \PY{n}{tcga}\PY{p}{[}\PY{n}{tcga}\PY{o}{.}\PY{n}{submitter\PYZus{}id}\PY{o}{.}\PY{n}{str}\PY{o}{.}\PY{n}{contains}\PY{p}{(}\PY{n}{sample}\PY{p}{)}\PY{p}{]}\PY{o}{.}\PY{n}{project\PYZus{}name}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+             \PY{k}{else}\PY{p}{:}
+                 \PY{n}{types}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}
+                         \PY{n+nb}{list}\PY{p}{(}\PY{n}{gtex\PYZus{}sub}\PY{p}{[}\PY{n}{gtex\PYZus{}sub}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{n}{sample}\PY{p}{]}\PY{o}{.}\PY{n}{tissue}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{replace}\PY{p}{(}
+                             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{types}
+         
+         \PY{c+c1}{\PYZsh{} Save}
+         \PY{n}{df}\PY{o}{.}\PY{n}{to\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tcga\PYZhy{}gtex\PYZhy{}metadata\PYZhy{}intersect.tsv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/Users/Jvivian/anaconda/lib/python2.7/site-packages/ipykernel/\_\_main\_\_.py:37: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row\_indexer,col\_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html\#indexing-view-versus-copy
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}53}]:} \PY{n}{pd}\PY{o}{.}\PY{n}{set\PYZus{}option}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{max\PYZus{}columns}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}
+         \PY{n}{df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}53}]:}                               id      reads  \textbackslash{}
+         TCGA-CD-8534-01  TCGA-CD-8534-01  240016440   
+         TCGA-ER-A19A-06  TCGA-ER-A19A-06  179705496   
+         TCGA-C5-A1M8-01  TCGA-C5-A1M8-01  195313702   
+         TCGA-D1-A0ZN-01  TCGA-D1-A0ZN-01   30911468   
+         TCGA-EM-A4FF-01  TCGA-EM-A4FF-01  206307190   
+         
+                                                     {\ldots}                               \textbackslash{}
+         TCGA-CD-8534-01                             {\ldots}                                
+         TCGA-ER-A19A-06                             {\ldots}                                
+         TCGA-C5-A1M8-01                             {\ldots}                                
+         TCGA-D1-A0ZN-01                             {\ldots}                                
+         TCGA-EM-A4FF-01                             {\ldots}                                
+         
+                          tumor  \textbackslash{}
+         TCGA-CD-8534-01    yes   
+         TCGA-ER-A19A-06    yes   
+         TCGA-C5-A1M8-01    yes   
+         TCGA-D1-A0ZN-01    yes   
+         TCGA-EM-A4FF-01    yes   
+         
+                                                                                 type  
+         TCGA-CD-8534-01                                       Stomach\_Adenocarcinoma  
+         TCGA-ER-A19A-06                                      Skin\_Cutaneous\_Melanoma  
+         TCGA-C5-A1M8-01  Cervical\_Squamous\_Cell\_Carcinoma\_and\_Endocervical\_Adenoc{\ldots}  
+         TCGA-D1-A0ZN-01                         Uterine\_Corpus\_Endometrial\_Carcinoma  
+         TCGA-EM-A4FF-01                                            Thyroid\_Carcinoma  
+         
+         [5 rows x 16 columns]
+\end{Verbatim}
+        
+    \subsection{Missing Data}\label{missing-data}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{n}{df}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}29}]:} id                 0
+         reads              0
+         size\_MB            0
+         platform           0
+         sex               39
+         tissue             0
+         seq\_site           0
+         weight          8342
+         height          8428
+         mapped\_reads    1048
+         race            1373
+         age              210
+         qc                 0
+         dataset            0
+         tumor              0
+         type               0
+         dtype: int64
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}82}]:} \PY{k}{print} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of samples with missing values: \PYZob{}\PYZcb{} of \PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}
+             \PY{n+nb}{sum}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{n}{df}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Number of samples with missing values: 9544 of 20852
+    \end{Verbatim}
+
+    \subsection{Data Plots}\label{data-plots}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}111}]:} \PY{k+kn}{from} \PY{n+nn}{bokeh.charts} \PY{k+kn}{import} \PY{n}{Bar}\PY{p}{,} \PY{n}{Histogram}
+          \PY{k+kn}{from} \PY{n+nn}{bokeh.io} \PY{k+kn}{import} \PY{n}{output\PYZus{}notebook}\PY{p}{,} \PY{n}{show}\PY{p}{,} \PY{n}{gridplot}
+          \PY{k+kn}{from} \PY{n+nn}{bokeh.resources} \PY{k+kn}{import} \PY{n}{CDN}
+          \PY{k+kn}{from} \PY{n+nn}{bokeh.embed} \PY{k+kn}{import} \PY{n}{autoload\PYZus{}static}
+          
+          \PY{n}{output\PYZus{}notebook}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    
+    
+    
+    
+    Create groups by datatype of columns
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}150}]:} \PY{n}{gr} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{columns}\PY{o}{.}\PY{n}{to\PYZus{}series}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{dtypes}\PY{p}{)}\PY{o}{.}\PY{n}{groups}
+          \PY{n}{gr} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n}{k}\PY{o}{.}\PY{n}{name}\PY{p}{:} \PY{n}{v} \PY{k}{for} \PY{n}{k}\PY{p}{,} \PY{n}{v} \PY{o+ow}{in} \PY{n}{gr}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+    \subsubsection{Continuous Data}\label{continuous-data}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}151}]:} \PY{n}{p} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{k}{for} \PY{n}{s} \PY{o+ow}{in} \PY{n}{gr}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{float64}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{+} \PY{n}{gr}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{int64}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{:}
+              \PY{n}{n} \PY{o}{=} \PY{n+nb}{sum}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+              \PY{n}{title} \PY{o}{=} \PY{n}{s} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ \PYZhy{} NaNs: \PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{n}\PY{p}{)}
+              \PY{n}{temp} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{p}{)}
+              \PY{n}{p}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{Histogram}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{s}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{n}{title}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{350}\PY{p}{,}
+                                \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dataset}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+          
+          \PY{n}{g} \PY{o}{=} \PY{n}{gridplot}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{n}{p}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{p}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{n}{p}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{n}{p}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{n}{p}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{,} \PY{n}{p}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{n}{p}\PY{p}{[}\PY{l+m+mi}{6}\PY{p}{]}\PY{p}{,} \PY{n+nb+bp}{None}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+          \PY{n}{show}\PY{p}{(}\PY{n}{g}\PY{p}{)}
+          
+          \PY{n}{js}\PY{p}{,} \PY{n}{tag} \PY{o}{=} \PY{n}{autoload\PYZus{}static}\PY{p}{(}\PY{n}{g}\PY{p}{,} \PY{n}{CDN}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{js/bokeh/metadata\PYZhy{}con.js}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{metadata\PYZhy{}con.js}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{w}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+              \PY{n}{f}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{n}{js}\PY{p}{)}
+          \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{tags}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{w}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}    
+              \PY{n}{f}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{n}{tag}\PY{p}{)}
+\end{Verbatim}
+
+    
+    
+    \subsubsection{Categorical Data}\label{categorical-data}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}152}]:} \PY{n}{tooltips}\PY{o}{=}\PY{p}{[}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{} Samples}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{@height}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}
+          
+          \PY{n}{b1} \PY{o}{=} \PY{n}{Bar}\PY{p}{(}\PY{n}{df}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{platform}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{group}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dataset}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{350}\PY{p}{,} \PY{n}{tooltips}\PY{o}{=}\PY{n}{tooltips}\PY{p}{)}
+          \PY{n}{b2} \PY{o}{=} \PY{n}{Bar}\PY{p}{(}\PY{n}{df}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sex}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{group}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dataset}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{350}\PY{p}{,} \PY{n}{tooltips}\PY{o}{=}\PY{n}{tooltips}\PY{p}{)}
+          \PY{n}{b3} \PY{o}{=} \PY{n}{Bar}\PY{p}{(}\PY{n}{df}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{seq\PYZus{}site}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{group}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dataset}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{350}\PY{p}{,} \PY{n}{tooltips}\PY{o}{=}\PY{n}{tooltips}\PY{p}{)}
+          \PY{n}{b4} \PY{o}{=} \PY{n}{Bar}\PY{p}{(}\PY{n}{df}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{race}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{group}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dataset}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{350}\PY{p}{,} \PY{n}{tooltips}\PY{o}{=}\PY{n}{tooltips}\PY{p}{)}
+          \PY{n}{b5} \PY{o}{=} \PY{n}{Bar}\PY{p}{(}\PY{n}{df}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tumor}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{group}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dataset}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{350}\PY{p}{,} \PY{n}{tooltips}\PY{o}{=}\PY{n}{tooltips}\PY{p}{)}
+          
+          \PY{n}{g} \PY{o}{=} \PY{n}{gridplot}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{n}{b1}\PY{p}{,} \PY{n}{b2}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{n}{b3}\PY{p}{,} \PY{n}{b4}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{n}{b5}\PY{p}{,} \PY{n+nb+bp}{None}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+          
+          \PY{n}{show}\PY{p}{(}\PY{n}{g}\PY{p}{)}
+          
+          \PY{n}{js}\PY{p}{,} \PY{n}{tag} \PY{o}{=} \PY{n}{autoload\PYZus{}static}\PY{p}{(}\PY{n}{g}\PY{p}{,} \PY{n}{CDN}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{js/bokeh/metadata\PYZhy{}cat.js}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{metadata\PYZhy{}cat.js}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{w}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+              \PY{n}{f}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{n}{js}\PY{p}{)}
+          \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{tags}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}    
+              \PY{n}{f}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{n}{tag}\PY{p}{)}
+\end{Verbatim}
+
+    
+    
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
