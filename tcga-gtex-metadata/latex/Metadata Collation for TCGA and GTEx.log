@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  27 JUN 2017 11:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  27 JUN 2017 12:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -435,7 +435,7 @@ Package color Info: Redefining color lightgray on input line 58.
 Package hyperref Info: Option `breaklinks' set `true' on input line 237.
 Package hyperref Info: Option `colorlinks' set `true' on input line 237.
 
-No file "Metadata Collation for TCGA and GTEx".aux.
+(./Metadata Collation for TCGA and GTEx.aux)
 \openout1 = `"Metadata Collation for TCGA and GTEx.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 244.
@@ -452,6 +452,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 244.
 LaTeX Font Info:    ... okay on input line 244.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 244.
 LaTeX Font Info:    ... okay on input line 244.
+
 (/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count130
@@ -537,6 +538,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 244.
 LaTeX Info: Redefining \pageref on input line 244.
 LaTeX Info: Redefining \nameref on input line 244.
+
+(./Metadata Collation for TCGA and GTEx.out)
+(./Metadata Collation for TCGA and GTEx.out)
 \@outlinefile=\write4
 \openout4 = `"Metadata Collation for TCGA and GTEx.out"'.
 
@@ -590,36 +594,68 @@ LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
 (Font)              for symbol `textbackslash' on input line 820.
 
 [7] [8]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 960.
- [9]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 960.
+<Metadata Collation for TCGA and GTEx_files/Metadata Collation for TCGA and GTE
+x_38_0.png, id=88, 859.21pt x 857.2025pt>
+File: Metadata Collation for TCGA and GTEx_files/Metadata Collation for TCGA an
+d GTEx_38_0.png Graphic file (type png)
+
+<use Metadata Collation for TCGA and GTEx_files/Metadata Collation for TCGA and
+ GTEx_38_0.png>
+Package pdftex.def Info: Metadata Collation for TCGA and GTEx_files/Metadata Co
+llation for TCGA and GTEx_38_0.png used on input line 912.
+(pdftex.def)             Requested size: 859.20792pt x 857.20041pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 914--915
+
+ []
+
+[9 <./Metadata Collation for TCGA and GTEx_files/Metadata Collation for TCGA an
+d GTEx_38_0.png>]
+<Metadata Collation for TCGA and GTEx_files/Metadata Collation for TCGA and GTE
+x_39_0.png, id=95, 859.21pt x 858.20625pt>
+File: Metadata Collation for TCGA and GTEx_files/Metadata Collation for TCGA an
+d GTEx_39_0.png Graphic file (type png)
+
+<use Metadata Collation for TCGA and GTEx_files/Metadata Collation for TCGA and
+ GTEx_39_0.png>
+Package pdftex.def Info: Metadata Collation for TCGA and GTEx_files/Metadata Co
+llation for TCGA and GTEx_39_0.png used on input line 930.
+(pdftex.def)             Requested size: 859.20792pt x 858.20416pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 932--933
+
+ []
+
+[10 <./Metadata Collation for TCGA and GTEx_files/Metadata Collation for TCGA a
+nd GTEx_39_0.png>]
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 955.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1006.
+[11]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1006.
  (./Metadata Collation for TCGA and GTEx.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 960.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 960.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1006.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1006.
 
+Package rerunfilecheck Info: File `"Metadata Collation for TCGA and GTEx".out' 
+has not changed.
+(rerunfilecheck)             Checksum: 8D6A2595A08579592071FE224E5D56CF;646.
 
-Package rerunfilecheck Warning: File `"Metadata Collation for TCGA and GTEx".ou
-t' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `"Metadata Collation for TCGA and GT
-Ex".out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  1296D0EC91CFA0FBF172A9D0F03F12C2;618.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 960.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1006.
  ) 
 Here is how much of TeX's memory you used:
- 8350 strings out of 492995
- 123836 string characters out of 6132704
- 237215 words of memory out of 5000000
- 11729 multiletter control sequences out of 15000+600000
+ 8379 strings out of 492995
+ 125020 string characters out of 6132704
+ 237828 words of memory out of 5000000
+ 11749 multiletter control sequences out of 15000+600000
  10246 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,6n,37p,719b,464s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -631,11 +667,11 @@ usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
 r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/
 local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
 ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on "Metadata Collation for TCGA and GTEx.pdf" (9 pages, 125883 b
-ytes).
+Output written on "Metadata Collation for TCGA and GTEx.pdf" (11 pages, 243134 
+bytes).
 PDF statistics:
- 94 PDF objects out of 1000 (max. 8388607)
- 74 compressed objects within 1 object stream
- 20 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 140 PDF objects out of 1000 (max. 8388607)
+ 113 compressed objects within 2 object streams
+ 23 named destinations out of 1000 (max. 500000)
+ 91 words of extra memory for PDF output out of 10000 (max. 10000000)
 

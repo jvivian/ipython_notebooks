@@ -883,7 +883,59 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 Number of samples with missing values: 9544 of 20852
     \end{Verbatim}
 
-    \subsection{Data Plots}\label{data-plots}
+    \section{Plots}\label{plots}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{gr} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{columns}\PY{o}{.}\PY{n}{to\PYZus{}series}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{dtypes}\PY{p}{)}\PY{o}{.}\PY{n}{groups}
+        \PY{n}{gr} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n}{k}\PY{o}{.}\PY{n}{name}\PY{p}{:} \PY{n}{v} \PY{k}{for} \PY{n}{k}\PY{p}{,} \PY{n}{v} \PY{o+ow}{in} \PY{n}{gr}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}189}]:} \PY{n}{f}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+          \PY{n}{ax} \PY{o}{=} \PY{n}{ax}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}
+          \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{0}
+          \PY{k}{for} \PY{n}{s} \PY{o+ow}{in} \PY{n}{gr}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{float64}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{+} \PY{n}{gr}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{int64}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{:}
+              \PY{n}{n} \PY{o}{=} \PY{n+nb}{sum}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+              \PY{n}{title} \PY{o}{=} \PY{n}{s} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ \PYZhy{} NaNs: \PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{n}\PY{p}{)}
+              \PY{n}{fg} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{FacetGrid}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{hue}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dataset}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              \PY{n}{fg} \PY{o}{=} \PY{n}{fg}\PY{o}{.}\PY{n}{map}\PY{p}{(}\PY{n}{sns}\PY{o}{.}\PY{n}{distplot}\PY{p}{,} \PY{n}{s}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+              \PY{n}{ax}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title}\PY{p}{)}
+              \PY{n}{i} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+              \PY{n}{plt}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{n}{fg}\PY{o}{.}\PY{n}{fig}\PY{p}{)}  \PY{c+c1}{\PYZsh{} FacetGrid makes its own plot we don\PYZsq{}t want}
+          \PY{n}{ax}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{off}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{f}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{hspace}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{5}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Metadata Collation for TCGA and GTEx_files/Metadata Collation for TCGA and GTEx_38_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}217}]:} \PY{n}{f}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+          \PY{n}{ax} \PY{o}{=} \PY{n}{ax}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}
+          \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{s} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{platform}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sex}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{seq\PYZus{}site}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{race}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tumor}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+              \PY{n}{n} \PY{o}{=} \PY{n+nb}{sum}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+              \PY{n}{title} \PY{o}{=} \PY{n}{s} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ \PYZhy{} NaNs: \PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{n}\PY{p}{)}
+              \PY{n}{sns}\PY{o}{.}\PY{n}{countplot}\PY{p}{(}\PY{n}{data}\PY{o}{=}\PY{n}{df}\PY{p}{,} \PY{n}{x}\PY{o}{=}\PY{n}{s}\PY{p}{,} \PY{n}{hue}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dataset}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{setp}\PY{p}{(}\PY{n}{ax}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{o}{.}\PY{n}{get\PYZus{}xticklabels}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{rotation}\PY{o}{=}\PY{l+m+mi}{45}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+          \PY{n}{ax}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{off}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Metadata Collation for TCGA and GTEx_files/Metadata Collation for TCGA and GTEx_39_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \section{Bokeh Plots}\label{bokeh-plots}
+
+Bokeh renders to HTML / JS and therefore is not exportable by Jupyter to
+LaTeX. These plots are more aesthetic and will be featured on the
+author's website.
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}111}]:} \PY{k+kn}{from} \PY{n+nn}{bokeh.charts} \PY{k+kn}{import} \PY{n}{Bar}\PY{p}{,} \PY{n}{Histogram}
@@ -900,11 +952,6 @@ Number of samples with missing values: 9544 of 20852
     
     Create groups by datatype of columns
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}150}]:} \PY{n}{gr} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{columns}\PY{o}{.}\PY{n}{to\PYZus{}series}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{dtypes}\PY{p}{)}\PY{o}{.}\PY{n}{groups}
-          \PY{n}{gr} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n}{k}\PY{o}{.}\PY{n}{name}\PY{p}{:} \PY{n}{v} \PY{k}{for} \PY{n}{k}\PY{p}{,} \PY{n}{v} \PY{o+ow}{in} \PY{n}{gr}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZcb{}}
-\end{Verbatim}
-
     \subsubsection{Continuous Data}\label{continuous-data}
 
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -912,7 +959,6 @@ Number of samples with missing values: 9544 of 20852
           \PY{k}{for} \PY{n}{s} \PY{o+ow}{in} \PY{n}{gr}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{float64}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{+} \PY{n}{gr}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{int64}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{:}
               \PY{n}{n} \PY{o}{=} \PY{n+nb}{sum}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}\PY{p}{)}
               \PY{n}{title} \PY{o}{=} \PY{n}{s} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ \PYZhy{} NaNs: \PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{n}\PY{p}{)}
-              \PY{n}{temp} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{p}{)}
               \PY{n}{p}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{Histogram}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{s}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{n}{title}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{350}\PY{p}{,}
                                 \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dataset}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
           
